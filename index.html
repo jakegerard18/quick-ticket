@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <title>Quick Ticket</title>
+</head>
+<body>
+    <nav id="nav-container">
+        <div id="title">
+            <h3>Quick Ticket</h3>
+        </div>
+        <a href="#" id="new-ticket-btn">New Ticket</a>
+    </nav>
+    <div id="new-ticket-modal">
+        <div id="new-ticket-modal-contents">
+            <h1>New Ticket: </h1>
+            <div>
+                <h3>Issue Name: </h3>
+                <input type="text" id="issue-name">
+            </div>
+            <div>
+                <h3>Customer: </h3>
+                <input type="text" id="issue-customer">
+            </div>
+            <div>
+                <h3>Description: </h3>
+                <textarea  id="issue-desc" cols="50" rows="7" placeholder="Enter a description of the issue..."></textarea>
+            </div>
+            <div id="modal-buttons">
+                <input type="submit" id="modal-submit-btn" value="Enter">
+                <input type="submit" id="modal-cancel-btn" value="Cancel">
+            </div>
+        </div>
+    </div>
+    <div id="ticket-table-container">
+        <table id="ticket-table">
+            <tr id="table-header">
+                <th>Ticket #:</th>
+                <th>Name:</th>
+                <th>Customer:</th>
+                <th>Description:</th>
+            </tr>
+        </table>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+</html>
