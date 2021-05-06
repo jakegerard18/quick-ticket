@@ -46,18 +46,7 @@ uiTicketTable.addEventListener('click', (e) => {
     let target = e.target;
     if(target.matches("i.far.fa-eye"))
     {
-        uiViewTicketModal.style.display = 'block';
-        let row = target.parentElement.parentElement.parentElement;
-        let num = row.children[0].textContent
-        let contents = uiViewTicketModal.children[0];
-        let heading = contents.children[0];
-        let name = contents.children[1].children[1];
-        let customer = contents.children[2].children[1]
-        let description = contents.children[3].children[1];
-        heading.textContent = `Ticket #: ${tickets[num-1].ticketNum}`;
-        name.value = tickets[num-1].name;
-        customer.value = tickets[num-1].customer;
-        description.value = tickets[num-1].description;
+        displayViewTicketModal(target);
     }
 });
 
@@ -115,6 +104,23 @@ function printTickets(tickets) {
         </tr>
        `
     })
+}
+
+function displayViewTicketModal(targ) {
+    let target = targ;
+    uiViewTicketModal.style.display = 'block';
+    let row = target.parentElement.parentElement.parentElement;
+    let num = row.children[0].textContent
+    let contents = uiViewTicketModal.children[0];
+    let heading = contents.children[0];
+    let name = contents.children[1].children[1];
+    let customer = contents.children[2].children[1]
+    let description = contents.children[3].children[1];
+
+    heading.textContent = `Ticket #: ${tickets[num-1].ticketNum}`;
+    name.value = tickets[num-1].name;
+    customer.value = tickets[num-1].customer;
+    description.value = tickets[num-1].description;   
 }
 
 //Function to clear modal inputs
