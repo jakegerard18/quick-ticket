@@ -1,14 +1,17 @@
 //Init storage, get tickets from storage, and set ticket number
-let ls = window.localStorage;
+const ls = window.localStorage;
 let ticketNum = ls.length;
 let tickets = getTickets();
 
 // UI vars
-let uiNewTicketBtn = document.getElementById('new-ticket-btn');
-let uiModalSubmitBtn = document.getElementById('modal-submit-btn');
-let uiModalCancelBtn = document.getElementById('modal-cancel-btn');
-let uiNewTicketModal = document.getElementById('new-ticket-modal');
-let uiTicketTable = document.getElementById('ticket-table');
+const uiNewTicketBtn = document.getElementById('new-ticket-btn');
+const uiModalSubmitBtn = document.getElementById('modal-submit-btn');
+const uiModalCancelBtn = document.getElementById('modal-cancel-btn');
+const uiNewTicketModal = document.getElementById('new-ticket-modal');
+const uiViewTicketModal = document.getElementById('view-ticket-modal');
+const uiViewTicketCloseBtn = document.getElementById('view-ticket-close-btn');
+const uiTicketTable = document.getElementById('ticket-table');
+
 
 
 //Print tickets on page load
@@ -18,22 +21,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Event to trigger new ticket modal
 uiNewTicketBtn.addEventListener('click', () => {
-    uiNewTicketModal.style.display = 'block'
-})
+    uiNewTicketModal.style.display = 'block';
+});
 
 //Event to add a new ticket
 uiModalSubmitBtn.addEventListener('click', () => {
     addTicket();
     uiNewTicketModal.style.display = 'none';
     clearTicketModal();
-    });
+});
 
 
 //Event to cancel adding a ticket
 uiModalCancelBtn.addEventListener('click', () => {
     uiNewTicketModal.style.display = 'none';
     clearTicketModal();
+});
+
+uiViewTicketCloseBtn.addEventListener('click', () => {
+    uiViewTicketModal.style.display = 'none';
 })
+
+uiTicketTable.addEventListener('click', (e) => {
+    let target = e.target;
+    if(target.matches("i.far.fa-eye"))
+    {
+        uiViewTicketModal.style.display = 'block';
+        let row = target.parentElement.parentElement.parentElement;
+        let num = row.children[0].textContent
+        let contents = uiViewTicketModal.children[0];
+        let heading = contents.children[0];
+        let name = contents.children[1].children[1];
+        let customer = contents.children[2].children[1]
+        let description = contents.children[3].children[1];
+        heading.textContent = `Ticket #: ${tickets[num-1].ticketNum}`;
+        name.value = tickets[num-1].name;
+        customer.value = tickets[num-1].customer;
+        description.value = tickets[num-1].description;
+    }
+});
 
 //Function to add a ticket to local storage and append it to the html table
 function addTicket() {
@@ -91,6 +117,7 @@ function printTickets(tickets) {
     })
 }
 
+//Function to clear modal inputs
 function clearTicketModal() {
     document.getElementById('issue-name').value = '';
     document.getElementById('issue-customer').value = '';
